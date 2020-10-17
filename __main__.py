@@ -1,6 +1,6 @@
 import logging
 from aiogram import executor
-from .Source.Bot.Dispatcher import dp
+from Source.Bot.Dispatcher import dp
 
 # Configure logging
 logging.basicConfig(level=logging.INFO)
