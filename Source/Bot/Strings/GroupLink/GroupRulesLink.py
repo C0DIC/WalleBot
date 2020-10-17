@@ -1,0 +1,1 @@
+rules_link = 'https://telegra.ph/Pravila-chata-06-18-7'
