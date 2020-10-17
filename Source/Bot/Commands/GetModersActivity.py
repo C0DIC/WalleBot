@@ -6,7 +6,7 @@ async def get_moders_activity(msg: types.Message):
         chat = msg.chat.id
         chat_admins = [admin.user.first_name for admin in await walle.get_chat_administrators(chat)]
 
-        admins = dict(admin: 0 for admin in chat_admins)
+        admins = {admin: 0 for admin in chat_admins}
 
         print(admins)
 
