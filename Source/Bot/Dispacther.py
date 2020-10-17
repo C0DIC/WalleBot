@@ -11,4 +11,4 @@ dp = Dispatcher(walle)
 
 dp.register_message_handler(start_command, commands = ['start'])
 dp.register_message_handler(cmds_command, commands = ['cmds'])
-dp.register_message_handler(new_group_user, content_types = ['new_chat_member'])
+dp.register_message_handler(new_group_user, content_types = ['new_chat_members'])
