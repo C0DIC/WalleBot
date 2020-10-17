@@ -11,7 +11,6 @@ async def start_command(msg: types.Message):
         sndr = msg.from_user
 
         if chat_type == 'private':
-            await msg.delete()
             await msg.answer(
                 start_text.format(
                     returnNoneReserved(sndr.first_name),
@@ -19,6 +18,7 @@ async def start_command(msg: types.Message):
                 ),
                 parse_mode = 'MarkdownV2'
             )
+            await msg.delete()
         else:
             await msg.reply(
                 use_in_private.format(
