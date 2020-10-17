@@ -14,7 +14,9 @@ async def left_group_user(msg: types.Message):
                 returnNoneReserved(leftie.first_name),
                 leftie.url,
                 returnNoneReserved(str(msg.date))
-            )
+            ),
+            parse_mode = 'MarkdownV2'
         )
+        await msg.delete()
     except Exception as e:
         print(e)

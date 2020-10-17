@@ -46,5 +46,6 @@ async def new_group_user(msg: types.Message):
                     ),
                     parse_mode = 'MarkdownV2'
                 )
+            await msg.delete()
     except Exception as e:
         print(e)
