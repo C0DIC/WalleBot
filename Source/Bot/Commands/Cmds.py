@@ -7,7 +7,7 @@ async def cmds_command(msg: types.Message):
         cmds_command_text = ''
 
         for times in range(0, len(walle_commands)):
-            cmds_command_text += walle_commands[times].description + ': ' + walle_commands[times].command + '\n'
+            cmds_command_text += walle_commands[times].description + ': /' + walle_commands[times].command + '\n'
 
         await msg.answer(
             cmds_command_text
