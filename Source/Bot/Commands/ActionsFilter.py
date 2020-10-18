@@ -9,8 +9,12 @@ from ..Strings.RU.Commands.ActionsList import actions_m, actions_f, actions
 async def actions_filter(msg: types.Message):
     try:
         action = removeUnderline(getFirstWord(msg.text.lower()))
-        action_args = await msg.get_args().split(' ')[1::]
         sndr = msg.from_user
+        
+        try:
+            action_args = await msg.get_args().split(' ')[1::]
+        except AttributeError:
+            pass
 
         for i in action_args:
             action_addition += ' ' + action_args[i]
