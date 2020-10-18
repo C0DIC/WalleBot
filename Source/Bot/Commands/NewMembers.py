@@ -47,10 +47,11 @@ async def new_group_user(msg: types.Message):
                     ),
                     parse_mode = 'MarkdownV2'
                 )
-        
+
         await asyncio.sleep(5)
-        
+
         for times in range(0, len(msg.new_chat_members)):
             await msg.delete()
+
     except Exception as e:
         print(e)
