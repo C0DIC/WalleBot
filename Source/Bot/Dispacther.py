@@ -14,7 +14,6 @@ from .Commands.Unmute import unmute_command
 from .Commands.Ban import ban_command
 from .Commands.Unban import unban_command
 from .Commands.Pin import pin_command
-from .Commands.StatForDay import day_stat_command
 
 
 dp = Dispatcher(walle)
@@ -23,7 +22,6 @@ dp = Dispatcher(walle)
 dp.register_message_handler(cmds_command, commands = ['cmds'])
 dp.register_message_handler(start_command, commands = ['start'])
 dp.register_message_handler(get_total_messages, commands = ['stat'])
-dp.register_message_handler(day_stat_command, commands = ['day_stat'])
 
 # Events
 dp.register_message_handler(new_group_user, content_types = ['new_chat_members'])

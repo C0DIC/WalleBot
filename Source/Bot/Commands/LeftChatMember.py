@@ -28,7 +28,12 @@ async def left_group_user(msg: types.Message):
                     leftie.url,
                     returnNoneReserved(sndr.first_name),
                     sndr.url,
-                    returnNoneReserved(str(msg.date))
+                    returnNoneReserved('{} {}:{}:{}'.format(
+                        msg.date.date,
+                        str(msg.date.hour+4),
+                        str(msg.date.minute),
+                        str(msg.date.second)
+                    ))
                 ),
                 parse_mode = 'MarkdownV2'
             )
