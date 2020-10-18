@@ -16,7 +16,14 @@ async def left_group_user(msg: types.Message):
                 user_left.format(
                     returnNoneReserved(leftie.first_name),
                     leftie.url,
-                    returnNoneReserved(str(msg.date))
+                    returnNoneReserved('{}-{}-{} {}:{}:{}'.format(
+                        str(msg.date.day),
+                        str(msg.date.month),
+                        str(msg.date.year),
+                        str(msg.date.hour+4),
+                        str(msg.date.minute),
+                        str(msg.date.second)
+                    ))
                 ),
                 parse_mode = 'MarkdownV2'
             )
@@ -28,8 +35,10 @@ async def left_group_user(msg: types.Message):
                     leftie.url,
                     returnNoneReserved(sndr.first_name),
                     sndr.url,
-                    returnNoneReserved('{} {}:{}:{}'.format(
-                        msg.date.date,
+                    returnNoneReserved('{}-{}-{} {}:{}:{}'.format(
+                        str(msg.date.day),
+                        str(msg.date.month),
+                        str(msg.date.year),
                         str(msg.date.hour+4),
                         str(msg.date.minute),
                         str(msg.date.second)

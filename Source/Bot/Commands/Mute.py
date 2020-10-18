@@ -54,8 +54,10 @@ async def mute_command(msg: types.Message):
                     sndr.url,
                     returnNoneReserved(target.first_name),
                     target.url,
-                    returnNoneReserved('{} {}:{}:{}'.format(
-                        msg.date.date,
+                    returnNoneReserved('{}-{}-{} {}:{}:{}'.format(
+                        str(msg.date.day),
+                        str(msg.date.month),
+                        str(msg.date.year),
                         str(msg.date.hour+4),
                         str(msg.date.minute),
                         str(msg.date.second)

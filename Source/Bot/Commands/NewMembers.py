@@ -43,8 +43,10 @@ async def new_group_user(msg: types.Message):
                         returnNoneReserved(newbie.first_name),
                         newbie.url,
                         returnNoneReserved(sndr.first_name),
-                        returnNoneReserved('{} {}:{}:{}'.format(
-                        msg.date.date,
+                        returnNoneReserved('{}-{}-{} {}:{}:{}'.format(
+                        str(msg.date.day),
+                        str(msg.date.month),
+                        str(msg.date.year),
                         str(msg.date.hour+4),
                         str(msg.date.minute),
                         str(msg.date.second)
