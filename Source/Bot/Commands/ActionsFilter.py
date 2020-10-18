@@ -15,9 +15,13 @@ async def actions_filter(msg: types.Message):
             action_args = await msg.get_args().split(' ')[1::]
         except AttributeError:
             pass
+        action_addition = ''
 
-        for i in action_args:
-            action_addition += ' ' + action_args[i]
+        if action_args is None:
+            pass
+        else:
+            for i in action_args:
+                action_addition += ' ' + action_args[i]
 
 
         if action in actions:
