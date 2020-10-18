@@ -10,7 +10,7 @@ async def actions_filter(msg: types.Message):
     sndr = msg.from_user
     target = msg.reply_to_message.from_user
 
-    if action in actions_m or actions_f:
+    if action in actions_m or action in actions_f:
         await msg.answer(action)
         await msg.answer(
             '[{}]({}) {} [{}]({}) \| 😱'.format(
