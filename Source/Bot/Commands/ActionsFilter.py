@@ -11,17 +11,11 @@ async def actions_filter(msg: types.Message):
         action = removeUnderline(getFirstWord(msg.text.lower()))
         sndr = msg.from_user
         
-        try:
-            action_args = await msg.get_args().split(' ')[1::]
-        except AttributeError:
-            pass
+        action_args = msg.text.lower().split(' ')[1::]
         action_addition = ''
-
-        if action_args is None:
-            pass
-        else:
-            for i in action_args:
-                action_addition += ' ' + action_args[i]
+        
+        for i in range(0, len(action_args)):
+                action_addition += returnNoneReserved(' ' + action_args[i])
 
 
         if action in actions:
