@@ -16,32 +16,32 @@ async def actions_filter(msg: types.Message):
 
             if action == actions[0]:
                 await msg.answer(
-                '[{}]({}) *хрюкнул(-а) на* [{}]({}) \| 😱'.format(returnNoneReserved(sndr.first_name), sndr.url, returnNoneReserved(target.first_name), target.url),
+                '[{}]({}) *хрюкнул\(\-а\) на* [{}]({}) \| 😱'.format(returnNoneReserved(sndr.first_name), sndr.url, returnNoneReserved(target.first_name), target.url),
                     parse_mode = 'MarkdownV2'
                 )
             if action == actions[1]:
                 await msg.answer(
-                '[{}]({}) *укусил(-а)* [{}]({}) \| 😱'.format(returnNoneReserved(sndr.first_name), sndr.url, returnNoneReserved(target.first_name), target.url),
+                '[{}]({}) *укусил\(\-а\)* [{}]({}) \| 😱'.format(returnNoneReserved(sndr.first_name), sndr.url, returnNoneReserved(target.first_name), target.url),
                     parse_mode = 'MarkdownV2'
                 )
             if action == actions[2]:
                 await msg.answer(
-                '[{}]({}) *дал(-а) шоколадку* [{}]({}) \| 😱'.format(returnNoneReserved(sndr.first_name), sndr.url, returnNoneReserved(target.first_name), target.url),
+                '[{}]({}) *дал\(\-а\) шоколадку* [{}]({}) \| 😱'.format(returnNoneReserved(sndr.first_name), sndr.url, returnNoneReserved(target.first_name), target.url),
                     parse_mode = 'MarkdownV2'
                 )
             if action == actions[3]:
                 await msg.answer(
-                '[{}]({}) *послал(-а)* [{}]({}) *спать* \| 😱'.format(returnNoneReserved(sndr.first_name), sndr.url, returnNoneReserved(target.first_name), target.url),
+                '[{}]({}) *послал\(\-а\)* [{}]({}) *спать* \| 😱'.format(returnNoneReserved(sndr.first_name), sndr.url, returnNoneReserved(target.first_name), target.url),
                     parse_mode = 'MarkdownV2'
                 )
             if action == actions[4]:
                 await msg.answer(
-                '[{}]({}) *оставил(-а) засос на* [{}]({}) \| 😱'.format(returnNoneReserved(sndr.first_name), sndr.url, returnNoneReserved(target.first_name), target.url),
+                '[{}]({}) *оставил\(\-а\) засос на* [{}]({}) \| 😱'.format(returnNoneReserved(sndr.first_name), sndr.url, returnNoneReserved(target.first_name), target.url),
                     parse_mode = 'MarkdownV2'
                 )
             if action == actions[5]:
                 await msg.answer(
-                '[{}]({}) *занялся(-лась) сексом с* [{}]({}) \| 😱'.format(returnNoneReserved(sndr.first_name), sndr.url, returnNoneReserved(target.first_name), target.url),
+                '[{}]({}) *занялся\(\-лась\) сексом с* [{}]({}) \| 😱'.format(returnNoneReserved(sndr.first_name), sndr.url, returnNoneReserved(target.first_name), target.url),
                     parse_mode = 'MarkdownV2'
                 )
 
