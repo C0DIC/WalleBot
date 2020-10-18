@@ -1,1 +1,1 @@
-removed_user_text = 'Выгнан: [{}]({})\nВыгнал: [{}]({})\nВремя: {}'
+removed_user_text = 'Выгнан: [{}]({})\nВыгнал: [{}]({})\nВремя: {}\n/#removed\_chat\_member'

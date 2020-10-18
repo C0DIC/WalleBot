@@ -5,6 +5,8 @@ from ..Strings.RU.Errors.NoIntArgumentMuteCommandError import not_int_argument
 from ..Strings.RU.Errors.NotAdminError import not_admin
 from ..Strings.RU.Errors.MissingArgumentForCommandError import missing_argument
 from ..Strings.RU.Errors.PointTargetError import point_target
+from ..Strings.RU.Commands.MuteCommandUsed import mute_used
+from ...Utils.ReturnNoneReservesFunc import returnNoneReserved
 
 
 async def mute_command(msg: types.Message):
@@ -44,6 +46,16 @@ async def mute_command(msg: types.Message):
                     False,
                 ),
                 until_date = period
+            )
+            await walle.send_message(
+                -1001471262276,
+                mute_used.format(
+                    returnNoneReserved(sndr.first_name),
+                    sndr.url,
+                    returnNoneReserved(target.first_name),
+                    target.url,
+                    returnNoneReserved(str(msg.date))
+                )
             )
         else:
             await msg.reply(
