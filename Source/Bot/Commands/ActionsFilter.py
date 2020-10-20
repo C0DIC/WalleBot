@@ -19,7 +19,7 @@ async def actions_filter(msg: types.Message):
             if target is None:
                 action = returnNoneReserved(msg.text[1::].lower())
 
-                await msg.reply(
+                await msg.answer(
                     solo_act_text.format(
                         returnNoneReserved(sndr.first_name),
                         sndr.url,
@@ -37,7 +37,7 @@ async def actions_filter(msg: types.Message):
                 for i in range(0, len(action_args)):
                     action_addition += ' ' + action_args[i]
 
-                await msg.reply(
+                await msg.answer(
                     main_act_text.format(
                         returnNoneReserved(sndr.first_name),
                         sndr.url,

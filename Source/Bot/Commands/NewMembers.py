@@ -30,7 +30,8 @@ async def new_group_user(msg: types.Message):
                     greetings_text.format(
                         returnNoneReserved(newbie.first_name),
                         newbie.url,
-                        rules_link
+                        returnNoneReserved(msg.chat.title),
+                        returnNoneReserved(msg.chat.title)
                     ),
                     parse_mode = 'MarkdownV2',
                     disable_web_page_preview = True
