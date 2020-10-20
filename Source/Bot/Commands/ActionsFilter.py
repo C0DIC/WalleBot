@@ -24,7 +24,8 @@ async def actions_filter(msg: types.Message):
                         returnNoneReserved(sndr.first_name),
                         sndr.url,
                         action                        
-                    )
+                    ),
+                    parse_mode = 'MarkdownV2'
                 )
                 await asyncio.sleep(2)
                 await msg.delete()
@@ -44,7 +45,8 @@ async def actions_filter(msg: types.Message):
                         returnNoneReserved(target.from_user.first_name),
                         target.from_user.url,
                         returnNoneReserved(action_addition)
-                    )
+                    ),
+                    parse_mode = 'MarkdownV2'
                 )
                 await asyncio.sleep(2)
                 await msg.delete()
