@@ -17,20 +17,20 @@ async def actions_filter(msg: types.Message):
             target = msg.reply_to_message
 
             if target is None:
-                action = returnNoneReserved(msg.text[1::])
+                action = returnNoneReserved(msg.text[1::].lower())
 
                 await msg.reply(
                     solo_act_text.format(
                         returnNoneReserved(sndr.first_name),
                         sndr.url,
-                        action                        
+                        action
                     ),
                     parse_mode = 'MarkdownV2'
                 )
                 await asyncio.sleep(2)
                 await msg.delete()
             else:
-                action = removeUnderline(msg.text.split()[0].replace(':', ''))
+                action = removeUnderline(msg.text.split()[0].replace(':', '').lower())
                 action_args = msg.text.lower().split(' ')[1::]
                 action_addition = ''
 
