@@ -14,7 +14,7 @@ async def actions_filter(msg: types.Message):
     try:
         if checkColon(msg.text):
             sndr = msg.from_user
-            target = msg.reply_to_message.from_user
+            target = msg.reply_to_message
 
             if target is None:
                 action = returnNoneReserved(msg.text[1::])
@@ -41,8 +41,8 @@ async def actions_filter(msg: types.Message):
                         returnNoneReserved(sndr.first_name),
                         sndr.url,
                         action,
-                        returnNoneReserved(target.first_name),
-                        target.url,
+                        returnNoneReserved(target.from_user.first_name),
+                        target.from_user.url,
                         returnNoneReserved(action_addition)
                     )
                 )
