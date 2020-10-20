@@ -9,7 +9,5 @@ async def antiflood(msg: types.Message):
         await asyncio.sleep(7)
         msg_stop = {msg.from_user.first_name : msg.message_id}
 
-        if msg_start == msg_stop:
-            print('Flood')
     except Exception as e:
         print(e)

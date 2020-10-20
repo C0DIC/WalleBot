@@ -7,7 +7,7 @@ from .Commands.Start import start_command
 from .Commands.Cmds import cmds_command
 from .Commands.NewMembers import new_group_user
 from .Commands.LeftChatMember import left_group_user
-from .Commands.TotalMessages import get_total_messages
+from .Commands.Stat import stat_command
 from .Commands.RemoveSystemMessages import remove_system_msg
 from .Commands.Mute import mute_command
 from .Commands.Unmute import unmute_command
@@ -17,12 +17,14 @@ from .Commands.Pin import pin_command
 from .Commands.ActionsFilter import actions_filter
 from .Commands.Antiflood import antiflood
 
+
 dp = Dispatcher(walle)
+
 
 # Default
 dp.register_message_handler(cmds_command, commands = ['cmds'])
 dp.register_message_handler(start_command, commands = ['start'])
-dp.register_message_handler(get_total_messages, commands = ['stat'])
+dp.register_message_handler(stat_command, commands = ['stat'])
 
 # Events
 dp.register_message_handler(new_group_user, content_types = ['new_chat_members'])
