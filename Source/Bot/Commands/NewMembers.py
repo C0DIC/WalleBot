@@ -5,7 +5,7 @@ from ...Utils.ReturnNoneReservesFunc import returnNoneReserved
 from ..Strings.GroupLink.GroupRulesLink import rules_link
 from ..Strings.RU.Commands.MemberJoined import joined_user
 from ..Strings.RU.Commands.UserAdded import added_user
-from ..Strings.RU.Commands.GreetingNewGroupUser import greetings_text
+from ..Strings.RU.Commands.GreetingNewGroupUser import greetings_text_assets, greetings_text
 
 
 async def new_group_user(msg: types.Message):
@@ -15,15 +15,27 @@ async def new_group_user(msg: types.Message):
         for times in range(0, len(msg.new_chat_members)):
             newbie = msg.new_chat_members[times]
 
-            await msg.answer(
-                greetings_text.format(
-                    returnNoneReserved(newbie.first_name),
-                    newbie.url,
-                    rules_link
-                ),
-                parse_mode = 'MarkdownV2',
-                disable_web_page_preview = True
-            )
+            if msg.chat.title == 'ᴀssᴇᴛs™':
+                await msg.answer(
+                    greetings_text_assets.format(
+                        returnNoneReserved(newbie.first_name),
+                        newbie.url,
+                        rules_link
+                    ),
+                    parse_mode = 'MarkdownV2',
+                    disable_web_page_preview = True
+                )
+            else:
+                await msg.answer(
+                    greetings_text.format(
+                        returnNoneReserved(newbie.first_name),
+                        newbie.url,
+                        rules_link
+                    ),
+                    parse_mode = 'MarkdownV2',
+                    disable_web_page_preview = True
+                )
+                
 
             if sndr.first_name == newbie.first_name:
                 await walle.send_message(
@@ -44,16 +56,16 @@ async def new_group_user(msg: types.Message):
                         newbie.url,
                         returnNoneReserved(sndr.first_name),
                         returnNoneReserved('{}-{}-{} {}:{}:{}'.format(
-                        str(msg.date.day),
-                        str(msg.date.month),
-                        str(msg.date.year),
-                        str(msg.date.hour+4),
-                        str(msg.date.minute),
-                        str(msg.date.second)
-                    ))
-                    ),
-                    parse_mode = 'MarkdownV2'
-                )
+                                str(msg.date.day),
+                                str(msg.date.month),
+                                str(msg.date.year),
+                                str(msg.date.hour+4),
+                                str(msg.date.minute),
+                                str(msg.date.second)
+                        ))
+                        ),
+                        parse_mode = 'MarkdownV2'
+                    )
 
         await asyncio.sleep(5)
 
