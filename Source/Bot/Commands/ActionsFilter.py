@@ -30,8 +30,13 @@ async def actions_filter(msg: types.Message):
                 await asyncio.sleep(2)
                 await msg.delete()
             else:
-                action = removeUnderline(msg.text.split()[0].replace(':', '').lower())
-                action_args = msg.text.lower().split(' ')[1::]
+                if ':' in msg.text.split()[0] and len(msg.text.split()[0]) > 1:
+                    action = removeUnderline(msg.text.split()[0].replace(':', '').lower())
+                    action_args = msg.text.lower().split()[1::]
+                else:
+                    action = removeUnderline(msg.text.split()[1].lower())
+                    action_args = msg.text.lower().split()[2::]
+
                 action_addition = ''
 
                 for i in range(0, len(action_args)):
