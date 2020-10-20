@@ -1,70 +1,54 @@
+import asyncio
 from aiogram import types
-from ..Bot import walle
-from ...Utils.GetFirstWordOfText import getFirstWord
+from ...Utils.RemoveUnderlineSymbol import removeUnderline
+from ...Utils.CheckForColon import checkColon
 from ...Utils.ReturnNoneReservesFunc import returnNoneReserved
-from ...Utils.removeUnderlineSymbol import removeUnderline
-from ..Strings.RU.Commands.ActionsList import actions_m, actions_f, actions
+from ...Utils.CompareUsers import compareUsers
+from ..Strings.RU.Commands.ActionsTexts.MainActionsText import main_act_text
+from ..Strings.RU.Commands.ActionsTexts.UserIsTargetText import user_is_target_text
+from ..Strings.RU.Errors.ActionMissingTargetError import MissingTargetError
+from ..Strings.RU.Commands.ActionsTexts.SoloActionText import solo_act_text
 
 
 async def actions_filter(msg: types.Message):
     try:
-        action = removeUnderline(getFirstWord(msg.text.lower()))
-        sndr = msg.from_user
-        
-        action_args = msg.text.lower().split(' ')[1::]
-        action_addition = ''
-        
-        for i in range(0, len(action_args)):
-                action_addition += returnNoneReserved(' ' + action_args[i])
-
-
-        if action in actions:
+        if checkColon(msg.text):
+            sndr = msg.from_user
             target = msg.reply_to_message.from_user
 
-            if action in actions[0]:
-                await msg.answer(
-                '[{}]({}) *хрюкнул\(\-а\) на* [{}]({})*{}* \| 🐽'.format(returnNoneReserved(sndr.first_name), sndr.url, returnNoneReserved(target.first_name), target.url, action_addition),
-                    parse_mode = 'MarkdownV2'
-                )
-            if action in actions[1]:
-                await msg.answer(
-                '[{}]({}) *укусил\(\-а\)* [{}]({})*{}* \| 😼'.format(returnNoneReserved(sndr.first_name), sndr.url, returnNoneReserved(target.first_name), target.url, action_addition),
-                    parse_mode = 'MarkdownV2'
-                )
-            if action in actions[2]:
-                await msg.answer(
-                '[{}]({}) *дал\(\-а\) шоколадку* [{}]({})*{}* \| 🍫'.format(returnNoneReserved(sndr.first_name), sndr.url, returnNoneReserved(target.first_name), target.url, action_addition),
-                    parse_mode = 'MarkdownV2'
-                )
-            if action in actions[3]:
-                await msg.answer(
-                '[{}]({}) *послал\(\-а\)* [{}]({}) *спать*,*{}* \| 🛏'.format(returnNoneReserved(sndr.first_name), sndr.url, returnNoneReserved(target.first_name), target.url, action_addition),
-                    parse_mode = 'MarkdownV2'
-                )
-            if action in actions[4]:
-                await msg.answer(
-                '[{}]({}) *оставил\(\-а\) засос на* [{}]({})*{}* \| 💋'.format(returnNoneReserved(sndr.first_name), sndr.url, returnNoneReserved(target.first_name), target.url, action_addition),
-                    parse_mode = 'MarkdownV2'
-                )
-            if action in actions[5]:
-                await msg.answer(
-                '[{}]({}) *занялся\(\-лась\) сексом с* [{}]({})*{}* \| 👉🏻👌🏻'.format(returnNoneReserved(sndr.first_name), sndr.url, returnNoneReserved(target.first_name), target.url, action_addition),
-                    parse_mode = 'MarkdownV2'
-                )
+            if target is None:
+                action = returnNoneReserved(msg.text[1::])
 
-        if action in actions_m or action in actions_f:
-            target = msg.reply_to_message.from_user
+                await msg.reply(
+                    solo_act_text.format(
+                        returnNoneReserved(sndr.first_name),
+                        sndr.url,
+                        action                        
+                    )
+                )
+                await asyncio.sleep(2)
+                await msg.delete()
+            else:
+                action = removeUnderline(msg.text.split()[0].replace(':', ''))
+                action_args = msg.text.lower().split(' ')[1::]
+                action_addition = ''
 
-            await msg.answer(
-                '[{}]({}) *{}* [{}]({})*{}* \| 💬'.format(
-                    returnNoneReserved(sndr.first_name),
-                    sndr.url,
-                    returnNoneReserved(action),
-                    returnNoneReserved(target.first_name),
-                    target.url,
-                    action_addition
-                ),
-                parse_mode = 'MarkdownV2'
-            )
+                for i in range(0, len(action_args)):
+                    action_addition += ' ' + action_args[i]
+
+                await msg.reply(
+                    main_act_text.format(
+                        returnNoneReserved(sndr.first_name),
+                        sndr.url,
+                        action,
+                        returnNoneReserved(target.first_name),
+                        target.url,
+                        returnNoneReserved(action_addition)
+                    )
+                )
+                await asyncio.sleep(2)
+                await msg.delete()
+        else:
+            pass
     except Exception as e:
         print(e)
