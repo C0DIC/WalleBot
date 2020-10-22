@@ -3,7 +3,9 @@ from ..Bot import walle
 from ..Strings.RU.Errors.NotAdminError import not_admin
 from ..Strings.RU.Errors.PointTargetError import point_target
 from ..Strings.RU.Commands.BanCommandUsedText import ban_used
+from ..Strings.RU.Commands.TaskDoneText import task_done
 from ...Utils.ReturnNoneReservesFunc import returnNoneReserved
+
 
 async def ban_command(msg: types.Message):
     chat_id = msg.chat.id
@@ -16,7 +18,8 @@ async def ban_command(msg: types.Message):
         if sndr in admins:
             await walle.kick_chat_member(
                 chat_id,
-                target.id
+                target.id,
+                until_date = 0
             )
             await walle.send_message(
                 -1001471262276,
@@ -36,6 +39,7 @@ async def ban_command(msg: types.Message):
                     parse_mode = 'MarkdownV2'
                 )
             )
+            await msg.reply(task_done, parse_mode = 'MarkdownV2')
         else:
             await msg.reply(
                 not_admin,

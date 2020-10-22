@@ -26,12 +26,14 @@ dp.register_message_handler(cmds_command, commands = ['cmds'])
 dp.register_message_handler(start_command, commands = ['start'])
 dp.register_message_handler(stat_command, commands = ['stat'])
 
+
 # Moderation
-dp.register_message_handler(mute_command, commands = ['mute'])
-dp.register_message_handler(unmute_command, commands = ['unmute'])
-dp.register_message_handler(ban_command, commands = ['ban'])
-dp.register_message_handler(unban_command, commands = ['unban'])
-dp.register_message_handler(pin_command, commands = ['pin'])
+dp.register_message_handler(mute_command, commands = ['mute'], commands_prefix = '*')
+dp.register_message_handler(unmute_command, commands = ['unmute'], commands_prefix = '*')
+dp.register_message_handler(ban_command, commands = ['ban'], commands_prefix = '*')
+dp.register_message_handler(unban_command, commands = ['unban'], commands_prefix = '*')
+dp.register_message_handler(pin_command, commands = ['pin'], commands_prefix = '*')
+
 
 # Events
 dp.register_message_handler(new_group_user, content_types = ['new_chat_members'])

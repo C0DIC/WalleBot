@@ -6,6 +6,7 @@ from ..Strings.RU.Errors.NotAdminError import not_admin
 from ..Strings.RU.Errors.MissingArgumentForCommandError import missing_argument
 from ..Strings.RU.Errors.PointTargetError import point_target
 from ..Strings.RU.Commands.MuteCommandUsed import mute_used
+from ..Strings.RU.Commands.TaskDoneText import task_done
 from ...Utils.ReturnNoneReservesFunc import returnNoneReserved
 
 
@@ -61,9 +62,11 @@ async def mute_command(msg: types.Message):
                         str(msg.date.hour+4),
                         str(msg.date.minute),
                         str(msg.date.second)
-                    ))
+                    )),
+                    parse_mode = 'MarkdownV2'
                 )
             )
+            await msg.reply(task_done, parse_mode = 'MarkdownV2')
         else:
             await msg.reply(
                 not_admin,

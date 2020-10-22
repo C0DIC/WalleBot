@@ -2,6 +2,7 @@ from aiogram import types
 from ..Bot import walle
 from ..Strings.RU.Errors.NotAdminError import not_admin
 from ..Strings.RU.Errors.PointTargetError import point_target
+from ..Strings.RU.Commands.TaskDoneText import task_done
 
 
 async def unmute_command(msg: types.Message):
@@ -27,6 +28,7 @@ async def unmute_command(msg: types.Message):
                     False
                 )
             )
+            await msg.reply(task_done, parse_mode = 'MarkdownV2')
         else:
             await msg.reply(
                 not_admin,
