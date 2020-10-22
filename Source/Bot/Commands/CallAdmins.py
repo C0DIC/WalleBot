@@ -8,7 +8,7 @@ async def call_admins_command(msg: types.Message):
         chat_id = msg.chat.id
         admins = [admin.user for admin in await walle.get_chat_administrators(chat_id)]
         reason = msg.get_args()
-        admin_user_text = '[]()'
+        admin_user_text = '[{}]({})'
         admins_text = ''
 
         for i in range(0, len(admins)):
