@@ -32,7 +32,8 @@ async def ban_command(msg: types.Message):
                         str(msg.date.hour+4),
                         str(msg.date.minute),
                         str(msg.date.second)
-                    ))
+                    )),
+                    parse_mode = 'MarkdownV2'
                 )
             )
         else:
