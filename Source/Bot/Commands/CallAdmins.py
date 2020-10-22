@@ -12,7 +12,7 @@ async def call_admins_command(msg: types.Message):
         admins_text = ''
 
         for i in range(0, len(admins)):
-            admins_text = admin_user_text.format(
+            admins_text += admin_user_text.format(
                 admins[i].first_name,
                 admins[i].url
             ) + '. '
