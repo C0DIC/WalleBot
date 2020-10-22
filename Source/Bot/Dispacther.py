@@ -16,6 +16,8 @@ from .Commands.Unban import unban_command
 from .Commands.Pin import pin_command
 from .Commands.ActionsFilter import actions_filter
 from .Commands.Antiflood import antiflood
+from .Commands.CallAdmins import call_admins_command
+from .Commands.Duel import duel_command
 
 
 dp = Dispatcher(walle)
@@ -25,7 +27,8 @@ dp = Dispatcher(walle)
 dp.register_message_handler(cmds_command, commands = ['cmds'])
 dp.register_message_handler(start_command, commands = ['start'])
 dp.register_message_handler(stat_command, commands = ['stat'])
-
+dp.register_message_handler(call_admins_command, commands = ['call_adms'])
+dp.register_message_handler(duel_command, commands = ['duel'])
 
 # Moderation
 dp.register_message_handler(mute_command, commands = ['mute'], commands_prefix = '*')
