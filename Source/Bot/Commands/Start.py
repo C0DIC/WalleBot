@@ -5,6 +5,7 @@ from ..Strings.GroupLink.GroupLinkText import group_link
 from ..Strings.RU.Commands.UseCommandInPrivate import use_in_private
 from ..Strings.RU.Commands.StartCommandText import start_text
 
+
 async def start_command(msg: types.Message):
     try:
         chat_type = msg.chat.type
