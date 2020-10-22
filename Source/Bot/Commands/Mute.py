@@ -7,6 +7,7 @@ from ..Strings.RU.Errors.MissingArgumentForCommandError import missing_argument
 from ..Strings.RU.Errors.PointTargetError import point_target
 from ..Strings.RU.Commands.MuteCommandUsed import mute_used
 from ..Strings.RU.Commands.TaskDoneText import task_done
+from ..Strings.RU.Commands.FormattedDateText import formatted_date
 from ...Utils.ReturnNoneReservesFunc import returnNoneReserved
 
 
@@ -48,6 +49,7 @@ async def mute_command(msg: types.Message):
                 ),
                 until_date = period
             )
+
             await walle.send_message(
                 -1001471262276,
                 mute_used.format(
@@ -55,17 +57,20 @@ async def mute_command(msg: types.Message):
                     sndr.url,
                     returnNoneReserved(target.first_name),
                     target.url,
-                    returnNoneReserved('{}-{}-{} {}:{}:{}'.format(
-                        str(msg.date.day),
-                        str(msg.date.month),
-                        str(msg.date.year),
-                        str(msg.date.hour+4),
-                        str(msg.date.minute),
-                        str(msg.date.second)
-                    )),
-                    parse_mode = 'MarkdownV2'
-                )
+                    returnNoneReserved(
+                        formatted_date.format(
+                            str(msg.date.day),
+                            str(msg.date.month),
+                            str(msg.date.year),
+                            str(msg.date.hour+4),
+                            str(msg.date.minute),
+                            str(msg.date.second)
+                        )
+                    )
+                ),
+                parse_mode = 'MarkdownV2'
             )
+            
             await msg.reply(task_done, parse_mode = 'MarkdownV2')
         else:
             await msg.reply(

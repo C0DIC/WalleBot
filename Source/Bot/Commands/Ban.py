@@ -3,6 +3,7 @@ from ..Bot import walle
 from ..Strings.RU.Errors.NotAdminError import not_admin
 from ..Strings.RU.Errors.PointTargetError import point_target
 from ..Strings.RU.Commands.BanCommandUsedText import ban_used
+from ..Strings.RU.Commands.FormattedDateText import formatted_date
 from ..Strings.RU.Commands.TaskDoneText import task_done
 from ...Utils.ReturnNoneReservesFunc import returnNoneReserved
 
@@ -21,6 +22,7 @@ async def ban_command(msg: types.Message):
                 target.id,
                 until_date = 0
             )
+
             await walle.send_message(
                 -1001471262276,
                 ban_used.format(
@@ -28,17 +30,20 @@ async def ban_command(msg: types.Message):
                     sndr.url,
                     returnNoneReserved(target.first_name),
                     target.url,
-                    returnNoneReserved('{}-{}-{} {}:{}:{}'.format(
-                        str(msg.date.day),
-                        str(msg.date.month),
-                        str(msg.date.year),
-                        str(msg.date.hour+4),
-                        str(msg.date.minute),
-                        str(msg.date.second)
-                    )),
-                    parse_mode = 'MarkdownV2'
-                )
+                    returnNoneReserved(
+                        formatted_date.format(
+                            str(msg.date.day),
+                            str(msg.date.month),
+                            str(msg.date.year),
+                            str(msg.date.hour+4),
+                            str(msg.date.minute),
+                            str(msg.date.second)
+                        )
+                    )
+                ),
+                parse_mode = 'MarkdownV2'
             )
+
             await msg.reply(task_done, parse_mode = 'MarkdownV2')
         else:
             await msg.reply(
