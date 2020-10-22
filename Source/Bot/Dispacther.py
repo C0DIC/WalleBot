@@ -9,13 +9,13 @@ from .Commands.NewMembers import new_group_user
 from .Commands.LeftChatMember import left_group_user
 from .Commands.Stat import stat_command
 from .Commands.RemoveSystemMessages import remove_system_msg
-from .Commands.Mute import mute_command
 from .Commands.Unmute import unmute_command
 from .Commands.Ban import ban_command
 from .Commands.Unban import unban_command
 from .Commands.Pin import pin_command
 from .Commands.ActionsFilter import actions_filter
 from .Commands.Antiflood import antiflood
+from .Commands.NewMute import mute_command
 
 
 dp = Dispatcher(walle)
