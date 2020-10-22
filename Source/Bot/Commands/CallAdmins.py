@@ -19,7 +19,7 @@ async def call_admins_command(msg: types.Message):
 
         await msg.reply(
             call_admins_text.format(
-                reason,
+                returnNoneReserved(reason),
                 returnNoneReserved(admins_text)
             ),
             parse_mode = 'MarkdownV2'
