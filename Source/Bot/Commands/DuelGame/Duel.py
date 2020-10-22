@@ -34,6 +34,7 @@ async def duel_command(msg: types.Message):
 
 
 async def duel_callb_listener(call: types.CallbackQuery):
+    print(call.message)
     sndr = call.message.reply_to_message.from_user
     target = call.message.reply_to_message.reply_to_message
 
