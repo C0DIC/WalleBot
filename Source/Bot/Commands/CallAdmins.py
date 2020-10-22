@@ -1,7 +1,7 @@
 from aiogram import types
 from ..Bot import walle
 from ..Strings.RU.Commands.CallAdminsText import call_admins_text
-
+from ...Utils.ReturnNoneReservesFunc import returnNoneReserved
 
 async def call_admins_command(msg: types.Message):
     try:
@@ -20,7 +20,7 @@ async def call_admins_command(msg: types.Message):
         await msg.reply(
             call_admins_text.format(
                 reason,
-                admins_text
+                returnNoneReserved(admins_text)
             ),
             parse_mode = 'MarkdownV2'
         )
