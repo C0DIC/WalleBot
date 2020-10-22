@@ -34,8 +34,8 @@ dp.register_message_handler(dp.async_task(actions_filter), content_types = ['tex
 #dp.register_message_handler(antiflood, content_types = ['any'])
 
 # Moderation
-dp.register_message_handler(mute_command, commands = ['mute'], commands_prefix = '*')
-dp.register_message_handler(unmute_command, commands = ['unmute'], commands_prefix = '*')
-dp.register_message_handler(ban_command, commands = ['ban'], commands_prefix = '*')
-dp.register_message_handler(unban_command, commands = ['unban'], commands_prefix = '*')
-dp.register_message_handler(pin_command, commands = ['pin'], commands_prefix = '*')
+dp.register_message_handler(mute_command, commands = ['mute'])
+dp.register_message_handler(unmute_command, commands = ['unmute'])
+dp.register_message_handler(ban_command, commands = ['ban'])
+dp.register_message_handler(unban_command, commands = ['unban'])
+dp.register_message_handler(pin_command, commands = ['pin'])
