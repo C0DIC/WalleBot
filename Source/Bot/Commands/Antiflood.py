@@ -17,6 +17,9 @@ async def antiflood(msg: types.Message):
             append_to_data = str(chat_id) + ':' + str(sndr_id) + ':' + str(msg_id)
             data.append(append_to_data)
 
+        if len(data) >  7:
+            data.clear()
+
         print(data)
     except Exception as e:
         print(e)
