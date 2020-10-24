@@ -34,6 +34,7 @@ async def antiflood(msg: types.Message):
             data.clear()
             for i in range(0, len(msgs_ids)):
                 await walle.delete_message(chat_id, msgs_ids[i])
+            msgs_ids.clear()
         elif counter < 7:
             pass
 
