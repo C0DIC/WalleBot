@@ -30,14 +30,13 @@ async def antiflood(msg: types.Message):
                 msgs_ids.append(msg_to_delete)
                 counter += 1
 
-        if len(msgs_ids) > 7:
+        if counter > 7:
             msgs_ids.clear()
             data.clear()
 
             for i in range(0, len(msgs_ids)):
                 await walle.delete_message(chat_id, msg.message_id)
                 await walle.delete_message(chat_id, msgs_ids[i])
-            msgs_ids.clear()
         elif counter < 7:
             pass
 
@@ -45,5 +44,6 @@ async def antiflood(msg: types.Message):
             await msg.answer("Flood detected (пожалуйста не обращайте внимания на это смс)")
 
         print(data)
+        print(counter)
     except Exception as e:
         print(e)
