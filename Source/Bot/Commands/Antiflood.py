@@ -18,6 +18,7 @@ async def antiflood(msg: types.Message):
             data.append(append_to_data)
 
         if len(data) >  7:
+            await msg.answer("Flood detected (пожалуйста не обращайте внимания на это смс)")
             data.clear()
 
         print(data)
