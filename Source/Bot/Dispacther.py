@@ -17,6 +17,8 @@ from .Commands.Pin import pin_command
 from .Commands.ActionsFilter import actions_filter
 from .Commands.Antiflood import antiflood
 from .Commands.CallAdmins import call_admins_command
+from .Commands.AdminsActivity.ActivityTablet import adms_activity
+from .Commands.AdminsActivity.AFK import afk_command
 #from .Commands.DuelGame.Duel import duel_command, duel_callb_listener
 
 
@@ -30,18 +32,20 @@ dp.register_message_handler(stat_command, commands = ['stat'])
 dp.register_message_handler(call_admins_command, commands = ['call_adms'])
 #dp.register_message_handler(duel_command, commands = ['duel'])
 
+
 # Moderation
 dp.register_message_handler(mute_command, commands = ['mute'], commands_prefix = '*')
 dp.register_message_handler(unmute_command, commands = ['unmute'], commands_prefix = '*')
 dp.register_message_handler(ban_command, commands = ['ban'], commands_prefix = '*')
 dp.register_message_handler(unban_command, commands = ['unban'], commands_prefix = '*')
 dp.register_message_handler(pin_command, commands = ['pin'], commands_prefix = '*')
-
+dp.register_message_handler(adms_activity, commands = ['adms_activity'], commands_prefix = '*')
+dp.register_message_handler(afk_command, commands = ['afk'], commands_prefix = '*')
 
 # Events
 dp.register_message_handler(new_group_user, content_types = ['new_chat_members'])
 dp.register_message_handler(left_group_user, content_types = ['left_chat_member'])
 dp.register_message_handler(dp.async_task(remove_system_msg), content_types = ['pinned_message'])
 dp.register_message_handler(dp.async_task(actions_filter), content_types = ['text'])
-dp.register_message_handler(dp.async_task(antiflood), content_types = ['any', 'text'])
+#dp.register_message_handler(dp.async_task(antiflood), content_types = ['any', 'text'])
 #dp.register_callback_query_handler(duel_callb_listener, lambda callb_query: True)
