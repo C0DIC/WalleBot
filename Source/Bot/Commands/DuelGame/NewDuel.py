@@ -13,5 +13,7 @@ async def duel_command(msg: types.Message):
         duel = Duel(msg)
 
         await duel.start_game()
+
+        await duel.waiting_for_target()
     except Exception as e:
         print(e)

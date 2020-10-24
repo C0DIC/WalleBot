@@ -5,7 +5,7 @@ from aiogram import types
 from ...Strings.RU.Commands.DuelGame.GameKeyboard import game_keyboard
 
 
-class Duel():
+class Duel(CallbackQuery):
     def __init__(self, msg: types.Message):
         self.msg = msg
         self.chat = msg.chat
@@ -20,14 +20,26 @@ class Duel():
                 )
             else:
                 await self.msg.reply(
-                    "Game starting\n First player: {}\nSecond player: {}".format(self.player1, self.player2),
+                    "Game starting\n First player: {}\nSecond player: {}".format(self.player1.first_name, self.player2.from_user.first_name),
                     reply_markup = game_keyboard
                 )
         except Exception as e:
             print(e)
 
     async def waiting_for_target(self):
-        pass
+        try:
+            if self.data == 'yes':
+                if self.from_user == self.player1 or self.from_user != self.player2:
+                    await self.msg.answer("Error")
+                else:
+                    await self.msg.answer("Round started")
+            elif self.data == 'no':
+                if self.from_user == self.player1 or self.from_user != self.player2:
+                    await self.msg.answer("Error")
+                else:
+                    await self.msg.answer("Round canceld")
+        except Exception as e:
+            print(e)
 
     async def end_game(self):
         pass
