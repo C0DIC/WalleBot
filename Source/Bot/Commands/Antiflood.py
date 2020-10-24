@@ -24,6 +24,7 @@ async def antiflood(msg: types.Message):
 
         for num, obj in enumerate(data):
             msg_user_ids = str(sndr_id) + ':' + str(msg_id)
+            print(msg_user_ids)
 
             if msg_user_ids in obj:
                 msg_to_delete = data[num].split(':')[2]
