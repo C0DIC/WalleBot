@@ -15,7 +15,7 @@ async def call_admins_command(msg: types.Message):
             admins_text += admin_user_text.format(
                 returnNoneReserved(admins[i].first_name),
                 admins[i].url
-            ) + ' '
+            ) + '. '
 
         await msg.reply(
             call_admins_text.format(
