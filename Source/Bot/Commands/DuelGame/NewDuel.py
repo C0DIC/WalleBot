@@ -12,6 +12,6 @@ async def duel_command(msg: types.Message):
     try:
         duel = Duel(msg)
 
-        duel.start_game()
+        await duel.start_game()
     except Exception as e:
         print(e)
