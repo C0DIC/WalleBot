@@ -28,7 +28,7 @@ dp.register_message_handler(cmds_command, commands = ['cmds'])
 dp.register_message_handler(start_command, commands = ['start'])
 dp.register_message_handler(stat_command, commands = ['stat'])
 dp.register_message_handler(call_admins_command, commands = ['call_adms'])
-dp.register_message_handler(duel_command, commands = ['duel'])
+#dp.register_message_handler(duel_command, commands = ['duel'])
 
 # Moderation
 dp.register_message_handler(mute_command, commands = ['mute'], commands_prefix = '*')
