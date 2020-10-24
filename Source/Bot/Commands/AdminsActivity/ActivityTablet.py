@@ -7,6 +7,7 @@ activity_tablet = []
 
 
 async def adms_activity(msg: types.Message):
+    print(activity_tablet)
     print(public_tablet)
     await refresh_tablet(message = msg)
     await msg.answer(public_tablet)
