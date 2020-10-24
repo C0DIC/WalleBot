@@ -17,8 +17,7 @@ from .Commands.Pin import pin_command
 from .Commands.ActionsFilter import actions_filter
 from .Commands.Antiflood import antiflood
 from .Commands.CallAdmins import call_admins_command
-from .Commands.AdminsActivity.ActivityTablet import adms_activity
-from .Commands.AdminsActivity.AFK import afk_command
+from .Commands.ForwaredUser import command
 #from .Commands.DuelGame.Duel import duel_command, duel_callb_listener
 
 
@@ -30,6 +29,7 @@ dp.register_message_handler(cmds_command, commands = ['cmds'])
 dp.register_message_handler(start_command, commands = ['start'])
 dp.register_message_handler(stat_command, commands = ['stat'])
 dp.register_message_handler(call_admins_command, commands = ['call_adms'])
+dp.register_message_handler(command, commands = ['hm'])
 #dp.register_message_handler(duel_command, commands = ['duel'])
 
 
@@ -39,8 +39,7 @@ dp.register_message_handler(unmute_command, commands = ['unmute'], commands_pref
 dp.register_message_handler(ban_command, commands = ['ban'], commands_prefix = '*')
 dp.register_message_handler(unban_command, commands = ['unban'], commands_prefix = '*')
 dp.register_message_handler(pin_command, commands = ['pin'], commands_prefix = '*')
-dp.register_message_handler(adms_activity, commands = ['adms_activity'], commands_prefix = '*')
-dp.register_message_handler(afk_command, commands = ['afk'], commands_prefix = '*')
+
 
 # Events
 dp.register_message_handler(new_group_user, content_types = ['new_chat_members'])
