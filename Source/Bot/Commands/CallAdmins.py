@@ -3,6 +3,7 @@ from ..Bot import walle
 from ..Strings.RU.Commands.CallAdminsText import call_admins_text
 from ...Utils.ReturnNoneReservesFunc import returnNoneReserved
 
+
 async def call_admins_command(msg: types.Message):
     try:
         chat_id = msg.chat.id

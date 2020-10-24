@@ -6,7 +6,6 @@ from ...Utils.ReturnNoneReservesFunc import returnNoneReserved
 from ...Utils.CompareUsers import compareUsers
 from ..Strings.RU.Commands.ActionsTexts.MainActionsText import main_act_text
 from ..Strings.RU.Commands.ActionsTexts.UserIsTargetText import user_is_target_text
-from ..Strings.RU.Errors.ActionMissingTargetError import MissingTargetError
 from ..Strings.RU.Commands.ActionsTexts.SoloActionText import solo_act_text
 
 
@@ -32,10 +31,10 @@ async def actions_filter(msg: types.Message):
             else:
                 if ':' in msg.text.split()[0] and len(msg.text.split()[0]) > 1:
                     action = removeUnderline(msg.text.split()[0].replace(':', '').lower())
-                    action_args = msg.text.lower().split()[1::]
+                    action_args = msg.text.split()[1::]
                 else:
                     action = removeUnderline(msg.text.split()[1].lower())
-                    action_args = msg.text.lower().split()[2::]
+                    action_args = msg.text.split()[2::]
 
                 action_addition = ''
 
