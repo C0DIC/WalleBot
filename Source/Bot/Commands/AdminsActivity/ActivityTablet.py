@@ -8,13 +8,13 @@ activity_tablet = []
 
 async def adms_activity(msg: types.Message):
     print(public_tablet)
-    refresh_tablet(msg)
+    refresh_tablet(message = msg)
     await msg.answer(public_tablet)
 
 
-async def refresh_tablet(msg: types.Message):
+async def refresh_tablet(message: types.Message):
     try:
-        chat_id = msg.chat.id
+        chat_id = message.chat.id
         admins = [admin.user for admin in await walle.get_chat_administrators(chat_id)]
 
         for adm in admins:
