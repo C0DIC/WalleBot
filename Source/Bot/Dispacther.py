@@ -18,7 +18,7 @@ from .Commands.ActionsFilter import actions_filter
 from .Commands.Antiflood import antiflood
 from .Commands.CallAdmins import call_admins_command
 from .Commands.DuelGame.NewDuel import duel_command
-
+from .Commands.Weather import weather_command
 
 dp = Dispatcher(walle)
 
@@ -28,6 +28,7 @@ dp.register_message_handler(cmds_command, commands = ['cmds'])
 dp.register_message_handler(start_command, commands = ['start'])
 dp.register_message_handler(stat_command, commands = ['stat'])
 dp.register_message_handler(call_admins_command, commands = ['call_adms'])
+dp.register_message_handler(weather_command, commands = ['weather'])
 dp.register_message_handler(duel_command, commands = ['duel'])
 
 
