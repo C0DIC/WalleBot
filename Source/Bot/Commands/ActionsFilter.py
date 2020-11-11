@@ -35,7 +35,7 @@ async def actions_filter(msg: types.Message):
                 after_ = readFirstAction(msg.text)
                 after__ = msg.text.replace(after_, '').replace(before_, '')
 
-                msg.answer(
+                await msg.answer(
                     main_act_text.format(
                         returnNoneReserved(before_.replace('[', '')),
                         returnNoneReserved(sndr.first_name),
