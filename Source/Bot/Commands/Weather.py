@@ -11,12 +11,13 @@ async def weather_command(msg: types.Message):
         msg_place = msg.text.split()[0]
 
         client = Weather(mgr, msg_place)
+        weather_text = client.get_weather_info()
 
         await msg.reply(
             weather_info_text.format(
-                client.temp,
-                client.feels_like,
-                returnNoneReserved(client.wind)
+                weather_text[0],
+                weather_text[1],
+                returnNoneReserved(weather_text[2])
             ),
             parse_mode = 'MarkdownV2'
         )

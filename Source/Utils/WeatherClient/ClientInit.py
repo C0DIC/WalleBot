@@ -18,15 +18,14 @@ class Weather():
         self.place = place
 
     def get_weather_info(self):
-        try:
-            self.observation = self.manager.weather_at_place(self.place)
-            self.w = self.observation.weather
+        self.observation = self.manager.weather_at_place(self.place)
+        self.w = self.observation.weather
 
-            self.temp = str(self.w.temperature('celsius')['temp']).replace('.', ',')
-            self.feels_like = str(self.w.temperature('celsius')['feels_like']).replace('.', ',')
-            self.wind = str(self.w.wind(unit = 'meters_sec')['speed']).replace('.', ',')
-            self.one_word = self.w.detailed_status.capitalize()
+        self.temp = str(self.w.temperature('celsius')['temp']).replace('.', ',')
+        self.feels_like = str(self.w.temperature('celsius')['feels_like']).replace('.', ',')
+        self.wind = str(self.w.wind(unit = 'meters_sec')['speed']).replace('.', ',')
+        self.one_word = self.w.detailed_status.capitalize()
 
-            self.info = [self.temp, self.feels_like, self.wind, self.one_word]
-        except NotFoundError:
-            pass
+        self.info = [self.temp, self.feels_like, self.wind, self.one_word]
+
+        return self.info
