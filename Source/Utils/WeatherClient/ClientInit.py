@@ -6,20 +6,20 @@ from pyowm.utils.config import get_default_config
 config_dict = get_default_config()
 config_dict['language'] = 'ru' # your language here
 
-
-owm = OWM('e26a3a63794a69d1983e3d006a3daee5', config_dict)
 mgr = owm.weather_manager()
 
 
-class Weather():
-
-    def __init__(self, manager: pyowm.owm.weather_manager.WeatherManager, place: str):
-        self.manager = manager
+class Weather:
+    def __init__(self, place):
         self.place = place
+        self.link = OWM('e26a3a63794a69d1983e3d006a3daee5', config_dict)
+        self.keep_running = True
 
-    def get_weather_info(self):
-        self.observation = self.manager.weather_at_place(self.place)
-        self.w = self.observation.weather
+
+    def run(self):
+        self.mngr = self.link.weather_manager()
+        self.obs = self.mngr.weather_at_place(self.place)
+        self.w = self.obs.weather
 
         self.temp = str(self.w.temperature('celsius')['temp']).replace('.', ',')
         self.feels_like = str(self.w.temperature('celsius')['feels_like']).replace('.', ',')

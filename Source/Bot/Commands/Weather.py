@@ -10,8 +10,8 @@ async def weather_command(msg: types.Message):
     try:
         msg_place = msg.text.split()[0]
 
-        client = Weather(mgr, msg_place)
-        weather_text = client.get_weather_info()
+        client = Weather(msg_place)
+        weather_text = client.run()
 
         await msg.reply(
             weather_info_text.format(
