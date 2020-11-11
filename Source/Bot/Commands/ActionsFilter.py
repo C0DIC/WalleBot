@@ -31,11 +31,12 @@ async def actions_filter(msg: types.Message):
                 await asyncio.sleep(2)
                 await msg.delete()
             else:
+                msg_text = msg.text.replace('~', '')
                 msg_target = f'[{target.from_user.first_name}]({target.from_user.url})'
                 msg_sndr = f'[{sndr.first_name}]({sndr.url})'
 
                 await msg.answer(
-                    msg.text.replace('%', returnNoneReserved(msg_target)).replace('$', returnNoneReserved(msg_sndr)),
+                    msg_text.replace('%', returnNoneReserved(msg_target)).replace('$', returnNoneReserved(msg_sndr)),
                     parse_mode = 'MarkdownV2'
                 )
                 await asyncio.sleep(2)
