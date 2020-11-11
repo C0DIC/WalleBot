@@ -1,9 +1,11 @@
 import asyncio
 from aiogram import types
 from ...Utils.RemoveUnderlineSymbol import removeUnderline
-from ...Utils.CheckForColon import checkColon
+from ...Utils.CheckForSpecialSym import checkSpecialSym
 from ...Utils.ReturnNoneReservesFunc import returnNoneReserved
 from ...Utils.CompareUsers import compareUsers
+from ...Utils.ReadAction import readFirstAction
+from ...Utils.ReadBeforeAction import readBeforeAction
 from ..Strings.RU.Commands.ActionsTexts.MainActionsText import main_act_text
 from ..Strings.RU.Commands.ActionsTexts.UserIsTargetText import user_is_target_text
 from ..Strings.RU.Commands.ActionsTexts.SoloActionText import solo_act_text
@@ -11,7 +13,7 @@ from ..Strings.RU.Commands.ActionsTexts.SoloActionText import solo_act_text
 
 async def actions_filter(msg: types.Message):
     try:
-        if checkColon(msg.text):
+        if checkSpecialSym(msg.text):
             sndr = msg.from_user
             target = msg.reply_to_message
 
@@ -29,26 +31,19 @@ async def actions_filter(msg: types.Message):
                 await asyncio.sleep(2)
                 await msg.delete()
             else:
-                if ':' in msg.text.split()[0] and len(msg.text.split()[0]) > 1:
-                    action = removeUnderline(msg.text.split()[0].replace(':', '').lower())
-                    action_args = msg.text.split()[1::]
-                else:
-                    action = removeUnderline(msg.text.split()[1].lower())
-                    action_args = msg.text.split()[2::]
+                before_ = readBeforeAction(msg.text)
+                after_ = readFirstAction(msg.text)
+                after__ = msg.text.replace(after_, '').replace(before_, '')
 
-                action_addition = ''
-
-                for i in range(0, len(action_args)):
-                    action_addition += ' ' + action_args[i]
-
-                await msg.answer(
+                msg.answer(
                     main_act_text.format(
+                        returnNoneReserved(before_.replace('[', '')),
                         returnNoneReserved(sndr.first_name),
                         sndr.url,
-                        action,
+                        returnNoneReserved(after_.replace('(', '')),
                         returnNoneReserved(target.from_user.first_name),
                         target.from_user.url,
-                        returnNoneReserved(action_addition)
+                        returnNoneReserved(after__)
                     ),
                     parse_mode = 'MarkdownV2'
                 )
