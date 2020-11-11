@@ -1,6 +1,5 @@
 from aiogram import types
 from ..Bot import walle
-from ...Utils.WeatherClient.ClientInit import mgr
 from ...Utils.WeatherClient.ClientInit import Weather
 from ...Utils.ReturnNoneReservesFunc import returnNoneReserved
 from ..Strings.RU.Commands.Weather.WeatherInfoText import weather_info_text
