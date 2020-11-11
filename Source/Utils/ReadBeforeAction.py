@@ -1,9 +1,10 @@
 def readBeforeAction(text):
     new_text = ''
-    if text.startswith('['):
-        for i in text:
-            new_text += i
-            if i == ']':
-                break
-
-    return new_text
+     for i in text:
+         if i == '[':
+             new_text += i
+         if i != ']':
+             new_text += i
+         else:
+             break
+     return new_text

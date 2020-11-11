@@ -31,9 +31,9 @@ async def actions_filter(msg: types.Message):
                 await asyncio.sleep(2)
                 await msg.delete()
             else:
-                before_ = readBeforeAction(msg.text)
-                after_ = readFirstAction(msg.text)
-                after__ = msg.text.replace(after_, '').replace(before_, '')
+                before_ = readBeforeAction(msg.text).replace('~', '')
+                after_ = readFirstAction(msg.text).replace('~', '')
+                after__ = msg.text.replace(after_, '').replace(before_, '').replace('~', '')
 
                 await msg.answer(
                     main_act_text.format(
