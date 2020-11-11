@@ -6,16 +6,12 @@ from pyowm.utils.config import get_default_config
 config_dict = get_default_config()
 config_dict['language'] = 'ru' # your language here
 
-mgr = owm.weather_manager()
-
 
 class Weather:
     def __init__(self, place):
         self.place = place
         self.link = OWM('e26a3a63794a69d1983e3d006a3daee5', config_dict)
-        self.keep_running = True
-
-
+        
     def run(self):
         self.mngr = self.link.weather_manager()
         self.obs = self.mngr.weather_at_place(self.place)
