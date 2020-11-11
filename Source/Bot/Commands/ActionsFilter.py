@@ -34,7 +34,7 @@ async def actions_filter(msg: types.Message):
                 msg_text = returnNoneReserved(msg.text.replace('~', ''))
                 msg_target = f'[{returnNoneReserved(target.from_user.first_name)}]({target.from_user.url})'
                 msg_sndr = f'[{returnNoneReserved(sndr.first_name)}]({sndr.url})'
-                msg_action = msg_text.replace('%', msg_target).replace('$', msg_sndr)
+                msg_action = msg_text.replace('%', msg_target).replace('$', msg_sndr) + '\| 💬'
 
                 await msg.answer(
                     msg_action,
