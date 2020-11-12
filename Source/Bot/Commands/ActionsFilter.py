@@ -2,6 +2,8 @@ import asyncio
 from aiogram import types
 from ...Utils.RemoveUnderlineSymbol import removeUnderline
 from ...Utils.CheckForSpecialSym import checkSpecialSym
+from ...Utils.CheckForSpecialSym import checkForSndrSyms
+from ...Utils.CheckForSpecialSym import checkForTargetSyms
 from ...Utils.ReturnNoneReservesFunc import returnNoneReserved
 from ...Utils.CompareUsers import compareUsers
 from ...Utils.ReadAction import readFirstAction
@@ -31,10 +33,17 @@ async def actions_filter(msg: types.Message):
                 await asyncio.sleep(2)
                 await msg.delete()
             else:
-                msg_text = returnNoneReserved(msg.text.replace('~', ''))
-                msg_target = f'[{returnNoneReserved(target.from_user.first_name)}]({target.from_user.url})'
-                msg_sndr = f'[{returnNoneReserved(sndr.first_name)}]({sndr.url})'
-                msg_action = msg_text.replace('&', msg_target).replace('&&', msg_sndr) + ' \| 💬'
+                msg_text = returnNoneReserved(msg.text.replace('//', ''))
+
+                if checkForSndrSyms(msg_text):
+                    msg_sndr = f'[{returnNoneReserved(sndr.first_name)}]({sndr.url})'
+                    msg_text.replace('@s', msg_target)
+
+                if checkForTargetSyms(msg_text):
+                    msg_target = f'[{returnNoneReserved(target.from_user.first_name)}]({target.from_user.url})'
+                    msg_text.replace('@y', msg_target)
+
+                msg_action = msg_text + \| 💬'
 
                 await msg.answer(
                     msg_action,
