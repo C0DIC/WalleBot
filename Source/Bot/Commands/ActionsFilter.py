@@ -12,6 +12,7 @@ from ..Strings.RU.Commands.ActionsTexts.UserIsTargetText import user_is_target_t
 from ..Strings.RU.Commands.ActionsTexts.MainActionsText import main_act_text
 from ..Strings.RU.Commands.ActionsTexts.SoloActionText import solo_act_text
 
+
 async def actions_filter(msg: types.Message):
     try:
         msg_text = msg.text
@@ -43,14 +44,15 @@ async def actions_filter(msg: types.Message):
                     if isSndrSym(action) is False and isTargetSym(action) is False:
                         action = removeUnderline(action)
 
-                        await msg,answer(
+                        await msg.answer(
                             main_act_text.format(
                                 returnNoneReserved(sndr.first_name),
                                 sndr.url,
                                 action,
                                 returnNoneReserved(target.from_user.first_name),
                                 target.from_user.url
-                            )
+                            ),
+                            parse_mode = 'MarkdownV2'
                         )
                         await asyncio.sleep(1)
                         await msg.delete()
@@ -66,7 +68,7 @@ async def actions_filter(msg: types.Message):
                         action = action + ' \| 💬'
 
                         await msg.answer(
-                            msg_action,
+                            action,
                             parse_mode = 'MarkdownV2'
                         )
 
