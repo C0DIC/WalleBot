@@ -5,12 +5,12 @@ def checkSpecialSym(text) -> bool:
 
 
 def checkForSndrSyms(text) -> bool:
-    if "@s" in text:
+    if "@" in text:
         return True
     return False
 
 
 def checkForTargetSyms(text) -> bool:
-    if "@y" in text:
+    if "#" in text:
         return True
     return False
