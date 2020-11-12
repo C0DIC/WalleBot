@@ -65,7 +65,7 @@ async def actions_filter(msg: types.Message):
                             act_target = f'[{returnNoneReserved(target.from_user.first_name)}]({target.from_user.url})'
                             action = action.replace('_', act_target)
 
-                        action = action + ' \| 💬'
+                        action = returnNoneReserved(action + ' | 💬')
 
                         await msg.answer(
                             action,
