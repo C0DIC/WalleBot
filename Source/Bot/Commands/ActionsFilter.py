@@ -58,11 +58,11 @@ async def actions_filter(msg: types.Message):
                         await msg.delete()
                     else:
                         if isSndrSym(action):
-                            act_sndr = '[{}]({})'.format(returnNoneReserved(sndr.first_name), sndr.url)
+                            act_sndr = f'[{returnNoneReserved(sndr.first_name)}]({sndr.url})'
                             action = action.replace('@', act_sndr)
 
                         if isTargetSym(action):
-                            act_target = '[{}]({})'.format(returnNoneReserved(target.from_user.first_name), target.from_user.url)
+                            act_target = f'[{returnNoneReserved(target.from_user.first_name)}]({target.from_user.url})'
                             action = action.replace('_', act_target)
 
                         action = action + ' \| 💬'
