@@ -43,7 +43,7 @@ async def actions_filter(msg: types.Message):
                     msg_target = f'[{returnNoneReserved(target.from_user.first_name)}]({target.from_user.url})'
                     msg_text = msg_text.replace('@y', msg_target)
 
-                msg_action = msg_text + '\| 💬'
+                msg_action = msg_text + ' \| 💬'
 
                 await msg.answer(
                     msg_action,
