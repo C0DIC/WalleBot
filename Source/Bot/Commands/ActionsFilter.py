@@ -37,11 +37,11 @@ async def actions_filter(msg: types.Message):
 
                 if checkForSndrSyms(msg_text):
                     msg_sndr = f'[{returnNoneReserved(sndr.first_name)}]({sndr.url})'
-                    msg_text.replace('@s', msg_sndr)
+                    msg_text = msg_text.replace('@s', msg_sndr)
 
                 if checkForTargetSyms(msg_text):
                     msg_target = f'[{returnNoneReserved(target.from_user.first_name)}]({target.from_user.url})'
-                    msg_text.replace('@y', msg_target)
+                    msg_text = msg_text.replace('@y', msg_target)
 
                 msg_action = msg_text + '\| 💬'
 
