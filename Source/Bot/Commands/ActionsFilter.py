@@ -22,7 +22,7 @@ async def actions_filter(msg: types.Message):
             target = msg.reply_to_message
 
             if target is None:
-                action = returnNoneReserved(msg_text).replace('~', '')
+                action = returnNoneReserved(msg_text.replace('~', ''))
                 print(action)
 
                 await msg.answer(
@@ -40,7 +40,7 @@ async def actions_filter(msg: types.Message):
                 if compareUsers(sndr, target.from_user):
                     pass
                 else:
-                    action = returnNoneReserved(msg_text).replace('~', '')
+                    action = returnNoneReserved(msg_text.replace('~', ''))
                     print(action)
 
                     if isSndrSym(action) is False and isTargetSym(action) is False:
@@ -59,7 +59,7 @@ async def actions_filter(msg: types.Message):
                         await asyncio.sleep(1)
                         await msg.delete()
                     else:
-                        action = returnNoneReserved(msg_text).replace('~', '')
+                        action = returnNoneReserved(msg_text.replace('~', ''))
                         print(action)
 
                         if isSndrSym(action):
@@ -68,7 +68,7 @@ async def actions_filter(msg: types.Message):
 
                         if isTargetSym(action):
                             act_target = f'[{returnNoneReserved(target.from_user.first_name)}]({target.from_user.url})'
-                            action = action.replace('_', act_target)
+                            action = action.replace('\_', act_target)
 
                         action = action + ' \| 💬'
                         print(action)
