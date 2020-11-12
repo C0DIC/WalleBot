@@ -23,6 +23,7 @@ async def actions_filter(msg: types.Message):
 
             if target is None:
                 action = returnNoneReserved(msg_text).replace('~', '')
+                print(action)
 
                 await msg.answer(
                     solo_act_text.format(
@@ -39,7 +40,8 @@ async def actions_filter(msg: types.Message):
                 if compareUsers(sndr, target.from_user):
                     pass
                 else:
-                    action = msg_text.replace('~', '')
+                    action = returnNoneReserved(msg_text).replace('~', '')
+                    print(action)
 
                     if isSndrSym(action) is False and isTargetSym(action) is False:
                         action = removeUnderline(action)
@@ -58,6 +60,7 @@ async def actions_filter(msg: types.Message):
                         await msg.delete()
                     else:
                         action = returnNoneReserved(msg_text).replace('~', '')
+                        print(action)
 
                         if isSndrSym(action):
                             act_sndr = f'[{returnNoneReserved(sndr.first_name)}]({sndr.url})'
