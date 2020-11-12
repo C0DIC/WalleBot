@@ -68,6 +68,7 @@ async def actions_filter(msg: types.Message):
                             action = action.replace('_', act_target)
 
                         action = action + ' \| 💬'
+                        print(action)
 
                         await msg.answer(
                             action,
