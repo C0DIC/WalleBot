@@ -1,26 +1,27 @@
 import asyncio
 from aiogram import types
+
+from ...Utils.ReturnNoneReservesFunc import returnNoneReserved
 from ...Utils.RemoveUnderlineSymbol import removeUnderline
 from ...Utils.CheckForSpecialSym import checkSpecialSym
-from ...Utils.CheckForSpecialSym import checkForSndrSyms
-from ...Utils.CheckForSpecialSym import checkForTargetSyms
-from ...Utils.ReturnNoneReservesFunc import returnNoneReserved
+from ...Utils.CheckForSpecialSym import isTargetSym
+from ...Utils.CheckForSpecialSym import isSndrSym
 from ...Utils.CompareUsers import compareUsers
-from ...Utils.ReadAction import readFirstAction
-from ...Utils.ReadBeforeAction import readBeforeAction
-from ..Strings.RU.Commands.ActionsTexts.MainActionsText import main_act_text
-from ..Strings.RU.Commands.ActionsTexts.UserIsTargetText import user_is_target_text
-from ..Strings.RU.Commands.ActionsTexts.SoloActionText import solo_act_text
 
+from ..Strings.RU.Commands.ActionsTexts.UserIsTargetText import user_is_target_text
+from ..Strings.RU.Commands.ActionsTexts.MainActionsText import main_act_text
+from ..Strings.RU.Commands.ActionsTexts.SoloActionText import solo_act_text
 
 async def actions_filter(msg: types.Message):
     try:
-        if checkSpecialSym(msg.text):
+        msg_text = msg.text
+
+        if checkSpecialSym(msg_text):
             sndr = msg.from_user
             target = msg.reply_to_message
 
             if target is None:
-                action = returnNoneReserved(msg.text[1::].lower())
+                action = msg_text.replace('~', '')
 
                 await msg.answer(
                     solo_act_text.format(
@@ -30,27 +31,47 @@ async def actions_filter(msg: types.Message):
                     ),
                     parse_mode = 'MarkdownV2'
                 )
-                await asyncio.sleep(2)
+                await asyncio.sleep(1)
                 await msg.delete()
+
             else:
-                msg_text = returnNoneReserved(msg.text.replace('~', ''))
+                if compareUsers(sndr, target.from_user):
+                    pass
+                else:
+                    action = returnNoneReserved(msg_text.replace('~', ''))
 
-                if checkForSndrSyms(msg_text):
-                    msg_sndr = f'[{returnNoneReserved(sndr.first_name)}]({sndr.url})'
-                    msg_text = msg_text.replace('@', msg_sndr)
+                    if isSndrSym(action) is False and isTargetSym(action) is False:
+                        action = removeUnderline(action)
 
-                if checkForTargetSyms(msg_text):
-                    msg_target = f'[{returnNoneReserved(target.from_user.first_name)}]({target.from_user.url})'
-                    msg_text = msg_text.replace('#', msg_target)
+                        await msg,answer(
+                            main_act_text.format(
+                                returnNoneReserved(sndr.first_name),
+                                sndr.url,
+                                action,
+                                returnNoneReserved(target.from_user.first_name),
+                                target.from_user.url
+                            )
+                        )
+                        await asyncio.sleep(1)
+                        await msg.delete()
+                    else:
+                        if isSndrSym(action):
+                            act_sndr = '[{}]({})'.format(returnNoneReserved(sndr.first_name), sndr.url)
+                            action = action.replace('@', act_sndr)
 
-                msg_action = msg_text + ' \| 💬'
+                        if isTargetSym(action):
+                            act_target = '[{}]({})'.format(returnNoneReserved(target.from_user.first_name), target.from_user.url)
+                            action = action.replace('_', act_target)
 
-                await msg.answer(
-                    msg_action,
-                    parse_mode = 'MarkdownV2'
-                )
-                await asyncio.sleep(2)
-                await msg.delete()
+                        action = action + ' \| 💬'
+
+                        await msg.answer(
+                            msg_action,
+                            parse_mode = 'MarkdownV2'
+                        )
+
+                        await asyncio.sleep(1)
+                        await msg.delete()
         else:
             pass
     except Exception as e:

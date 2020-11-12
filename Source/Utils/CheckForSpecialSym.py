@@ -4,13 +4,13 @@ def checkSpecialSym(text) -> bool:
     return False
 
 
-def checkForSndrSyms(text) -> bool:
-    if "@" in text:
+def isSndrSym(text) -> bool:
+    if '@' in text:
         return True
     return False
 
 
-def checkForTargetSyms(text) -> bool:
-    if "#" in text:
+def isTargetSym(text) -> bool:
+    if '_' in text:
         return True
     return False
