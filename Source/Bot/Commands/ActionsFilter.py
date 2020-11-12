@@ -39,6 +39,8 @@ async def actions_filter(msg: types.Message):
                 if compareUsers(sndr, target.from_user):
                     pass
                 else:
+                    action = msg_text.replace('~', '')
+
                     if isSndrSym(action) is False and isTargetSym(action) is False:
                         action = removeUnderline(action)
 
@@ -55,6 +57,8 @@ async def actions_filter(msg: types.Message):
                         await asyncio.sleep(1)
                         await msg.delete()
                     else:
+                        action = returnNoneReserved(msg_text).replace('~', '')
+
                         if isSndrSym(action):
                             act_sndr = f'[{returnNoneReserved(sndr.first_name)}]({sndr.url})'
                             action = action.replace('@', act_sndr)
