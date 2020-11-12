@@ -33,7 +33,7 @@ async def actions_filter(msg: types.Message):
                 await asyncio.sleep(2)
                 await msg.delete()
             else:
-                msg_text = returnNoneReserved(msg.text.replace('//', ''))
+                msg_text = returnNoneReserved(msg.text.replace('~', ''))
 
                 if checkForSndrSyms(msg_text):
                     msg_sndr = f'[{returnNoneReserved(sndr.first_name)}]({sndr.url})'
